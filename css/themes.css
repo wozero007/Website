@@ -1,0 +1,47 @@
+/* Professional Quote Style */
+/* Note: There were duplicate .pro-quote styles in your original CSS.
+   I'm keeping the second, more developed one here. */
+.pro-quote {
+    max-width: 750px;
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+    border-left: none; /* Removed the left border as per the second style block */
+    border-top: 2px solid #00c3ff;
+    border-bottom: 2px solid #00c3ff;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(2px);
+    border-radius: 6px;
+    text-align: center;
+}
+
+.pro-quote p {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+}
+
+.pro-quote cite {
+    display: block;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #f1f1f1;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+}
+
+/* Smooth fade-in animation for quote */
+.pro-quote {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1.2s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

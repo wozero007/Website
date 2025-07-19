@@ -1,0 +1,75 @@
+/* Reset + Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+main {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh; /* Keep 100vh for the main scrolling container */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* General Headings and Paragraphs - Fluid typography refined */
+h2 {
+    /* Scales from a smaller base for mobile, up to desktop size */
+    font-size: clamp(1.8rem, 7vw, 3.5rem); /* Adjusted min-size and vw for better mobile scaling */
+    margin-bottom: 0.8rem; /* Slightly reduced margin for mobile compactness */
+}
+
+p {
+    /* Scales from an even smaller base for mobile, up to desktop size */
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Adjusted min-size and vw for better mobile scaling */
+    margin-bottom: 1.5rem; /* Slightly reduced margin for mobile compactness */
+}
+
+/* Scroll hint */
+.scroll-down {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    position: absolute;
+    bottom: 20px;
+    animation: bounce 1.5s infinite;
+    z-index: 2;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* Slide animation for content within sections */
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Silk overlay */
+.silk {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5; /* Lower than content! */
+    opacity: 0.4; /* Slight see-through */
+}
