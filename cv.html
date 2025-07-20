@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Falling Scroll</title>
+<style>
+  body {
+    margin: 0;
+    background: #f3f0e8;
+    font-family: "Georgia", serif;
+    perspective: 1200px; /* Adds 3D depth */
+  }
+
+  /* Each section is a “sheet of paper” */
+  section {
+    height: 100vh;
+    width: 80%;
+    margin: 50px auto;
+    background: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    transform-origin: top center;
+    transition: transform 0.6s ease-out;
+    border-bottom: 2px dashed #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
+
+  section:nth-child(even) {
+    background: #fafafa;
+  }
+</style>
+</head>
+<body>
+
+<section>📜 Welcome</section>
+<section>➡️ About</section>
+<section>✅ Services</section>
+<section>📩 Contact</section>
+<section>🌟 Thank You</section>
+
+<script>
+  const sections = document.querySelectorAll("section");
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const offset = rect.top / windowHeight; 
+
+      // Rotate like falling paper when scrolling
+      const rotation = Math.min(Math.max(offset * 50, -90), 0); 
+      section.style.transform = `rotateX(${rotation}deg)`;
+    });
+  });
+</script>
+
+</body>
+</html>

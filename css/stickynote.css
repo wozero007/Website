@@ -1,0 +1,114 @@
+/* Sticky note wrapper */
+.paper {
+  --paper-dark: #f5d949;
+  --paper-color: #fff799;
+  --paper-shadow: rgba(0, 0, 0, 0.25);
+
+  position: relative;
+  width: 240px;        /* smaller note size */
+  min-height: 120px;   /* height for text */
+  padding: 1rem;
+  text-align: center;
+  font-family: "Caveat", cursive;
+  font-size: 1.4rem;
+  color: #333;
+  line-height: 1.4;
+
+  /* gradient for depth */
+  background: linear-gradient(135deg, var(--paper-color), var(--paper-dark));
+  border-radius: 4px;
+
+  /* floating shadow */
+  box-shadow: 
+    5px 8px 12px rgba(0,0,0,0.2),
+    inset -2px -2px 4px rgba(255,255,255,0.3);
+
+  /* slight tilt */
+  transform: rotate(-5deg);
+  transform-origin: top left;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover lift */
+.paper:hover {
+  transform: rotate(-4deg) scale(1.03);
+  box-shadow: 8px 12px 18px rgba(0,0,0,0.3);
+}
+
+/* TEXT inside note auto-wraps */
+.paper p {
+  margin: 0;
+  word-wrap: break-word;
+}
+
+/* --- Push Pin --- */
+
+/* The whole pin group positioning */
+.pin {
+  position: absolute;
+  top: -16px;    /* sits slightly above the note */
+  left: 20px;    /* attach from left */
+  width: 30px;
+  height: 30px;
+}
+
+/* Pin shadow */
+.pin .shadow {
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(0,0,0,0.2), 20%, rgba(0,0,0,0));
+  filter: blur(2px);
+}
+
+/* Metallic needle */
+.pin .metal {
+  position: absolute;
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, #eee, #666);
+  border-radius: 2px;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Pin head (3D dome) */
+.pin .bottom-circle {
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffb1b1 0%, #d43a3a 60%, #7a0e0e 100%);
+  box-shadow:
+    0 3px 5px rgba(0,0,0,0.3),
+    inset -3px -3px 5px rgba(0,0,0,0.2),
+    inset 2px 2px 3px rgba(255,255,255,0.4);
+}
+
+/* Gloss highlight on pin */
+.pin .bottom-circle::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 12px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  filter: blur(1px);
+}
+
+/* Center only this wrapper, without affecting body */
+.sticky-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;       /* full width available */
+  margin: 2rem 0;    /* some spacing from other sections */
+}
