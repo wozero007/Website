@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/stickynote.css" /> <!-- New: Link to sticky note CSS -->
 </head>
 <body>
 
@@ -27,8 +28,18 @@
   <cite>~ G.H. Hardy</cite>
 </blockquote>
 
-        <p>Latest updates: Photo of Tridax daisy is added.</p>
-        <a href="#photography" class="btn">View Latest Photo</a>
+<!-- Wrapper ONLY for sticky note -->
+<div class="sticky-center">
+  <div class="paper">
+    <div class="pin">
+      <div class="shadow"></div>
+      <div class="metal"></div>
+      <div class="bottom-circle"></div>
+    </div>
+    <p>📸 A new photo of Tridax daisy has been added.</p>
+    <a href="#photography" class="btn">View Latest Photo</a>
+  </div>
+</div>
       </div>
       <div class="scroll-down">↓</div>
     </section>
@@ -100,13 +111,7 @@
     </section>
   </main>
 
-  <!-- SILK OVERLAY SVG -->
-  <svg class="silk" viewBox="0 0 1920 1080" preserveAspectRatio="none">
-    <path fill="#000" d="M0,1080 C480,980 1440,1180 1920,1080 L1920,0 L0,0 Z"></path>
-  </svg>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Your custom scripts - load as modules -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
