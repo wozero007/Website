@@ -70,46 +70,48 @@
         if (lightboxImg) {
             lightboxImg.src = imgToCheck.src;
 
-            // Update Title (optional, mimicking Writings)
-            // headerTitle.textContent = "Gallery Viewer"; 
-
-            // Update Like State
+            // Load Count
             const filename = getFilename(imgToCheck.src);
-            const isLiked = localStorage.getItem(`like_${filename}`) === 'true';
-            updateLikeButton(isLiked);
+            const downloadCount = localStorage.getItem(`download_count_${filename}`) || 0;
+            updateDownloadButton(downloadCount);
 
             updateHash(currentIndex);
         }
     }
 
-    function updateLikeButton(isLiked) {
-        if (!likeBtn) return;
-        if (isLiked) {
-            likeBtn.innerHTML = 'favorite';
-            likeBtn.classList.add('active');
-        } else {
-            likeBtn.innerHTML = 'favorite_border';
-            likeBtn.classList.remove('active');
-        }
+    function updateDownloadButton(count) {
+        const btn = document.getElementById('lightbox-download');
+        if (!btn) return;
+        const countSpan = btn.querySelector('.action-count');
+        if (countSpan) countSpan.textContent = count;
     }
 
-    function toggleLike() {
+    function downloadImage() {
         const imgToCheck = images[currentIndex];
         if (!imgToCheck) return;
 
         const filename = getFilename(imgToCheck.src);
-        const currentLiked = localStorage.getItem(`like_${filename}`) === 'true';
-        const newLiked = !currentLiked;
 
-        localStorage.setItem(`like_${filename}`, newLiked);
-        updateLikeButton(newLiked);
+        // 1. Trigger Download
+        const link = document.createElement('a');
+        link.href = imgToCheck.src;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-        // Update Grid Button if visible
-        const gridBtn = document.querySelector(`.like-btn[data-filename="${filename}"]`);
+        // 2. Count Logic
+        let count = parseInt(localStorage.getItem(`download_count_${filename}`) || 0);
+        count++;
+        localStorage.setItem(`download_count_${filename}`, count);
+
+        updateDownloadButton(count);
+
+        // 3. Sync Grid
+        const gridBtn = document.querySelector(`.download-btn[onclick*="${filename}"]`);
         if (gridBtn) {
-            const icon = gridBtn.querySelector('.material-icons');
-            if (icon) icon.textContent = newLiked ? 'favorite' : 'favorite_border';
-            gridBtn.classList.toggle('active', newLiked);
+            const countSpan = gridBtn.querySelector('.action-count');
+            if (countSpan) countSpan.textContent = count;
         }
     }
 
@@ -130,9 +132,12 @@
             try {
                 await navigator.clipboard.writeText(url);
                 // Visual feedback
-                const originalIcon = shareBtn.innerHTML;
-                shareBtn.innerHTML = 'check';
-                setTimeout(() => shareBtn.innerHTML = originalIcon, 2000);
+                const shareBtn = document.getElementById('lightbox-share');
+                if (shareBtn) {
+                    const originalIcon = shareBtn.innerHTML;
+                    shareBtn.innerHTML = 'check';
+                    setTimeout(() => shareBtn.innerHTML = originalIcon, 2000);
+                }
             } catch (err) { console.error(err); }
         }
     }
@@ -167,14 +172,16 @@
                     <!-- Body -->
                     <div class="lightbox-body">
                         <img class="lightbox-img" id="lightbox-img">
-                        <!-- Floating Nav Removed -->
                     </div>
 
                     <!-- Footer -->
                     <div class="lightbox-footer">
                         <div class="footer-left">
                             <button class="nav-btn prev-btn">Previous</button>
-                            <button id="lightbox-like" class="action-btn material-icons">favorite_border</button>
+                            <button id="lightbox-download" class="action-btn download-btn">
+                                <span class="material-icons">cloud_download</span>
+                                <span class="action-count">0</span>
+                            </button>
                         </div>
                         
                         <div class="footer-right">
@@ -189,16 +196,15 @@
             // Bind Elements
             lightbox = document.getElementById('lightbox');
             lightboxImg = document.getElementById('lightbox-img');
-            likeBtn = document.getElementById('lightbox-like');
-            shareBtn = document.getElementById('lightbox-share');
-            // headerTitle = document.querySelector('.lightbox-title');
+            const downloadBtn = document.getElementById('lightbox-download');
+            const shareBtn = document.getElementById('lightbox-share');
 
             // Bind Events
             document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
             document.querySelector('.prev-btn').addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
             document.querySelector('.next-btn').addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-            likeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLike(); });
-            shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareImage(); });
+            if (downloadBtn) downloadBtn.addEventListener('click', (e) => { e.stopPropagation(); downloadImage(); });
+            if (shareBtn) shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareImage(); });
 
             // Close on backdrop click
             lightbox.addEventListener('click', (e) => {

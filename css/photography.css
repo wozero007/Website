@@ -98,11 +98,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
+    justify-content: center;
+    width: auto;
+    min-width: 35px;
     height: 35px;
-    border-radius: 50%;
+    border-radius: 20px;
     transition: all 0.2s;
-    padding: 0;
+    padding: 0 10px;
+    gap: 6px;
 }
 
 .card-action-btn .material-icons {
