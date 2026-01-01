@@ -33,7 +33,7 @@
                     <ul class="nav-links">
                         <li><a href="index.html" class="${isActive('index.html')}">Home</a></li>
                         <li><a href="cv.html" class="${isActive('cv.html')}">CV</a></li>
-                        <li><a href="photography.html" class="${isActive('photography.html')}">ಛಾಯಾಗ್ರಹಣ (Photography)</a></li>
+                        <li><a href="photography.html" class="${isActive('photography.html')}">ಛಾಯಾಗ್ರಹಣ (Photography) 1</a></li>
                         <li><a href="#" class="${isActive('drawings.html')}">ರೇಖಾಚಿತ್ರಕೆ (Drawings)</a></li>
                         <li><a href="#" class="${isActive('writings.html')}">ಬರಹಗಳು (Writings)</a></li>
                     </ul>
