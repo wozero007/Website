@@ -19,23 +19,72 @@
     <!-- Header, Sidebar, and Footer are injected by script.js -->
 
     <!-- Content to make the page scrollable -->
-    <main class="content">
+    <main class="content home-container">
         <!-- Banner is injected by script.js -->
-        <section class="dummy-section" style="background-color: #f0f0f0;">
-            <h2>Section 1</h2>
-            <p>Content goes here...</p>
+
+        <!-- Section 1: Recent Images -->
+        <section class="home-section">
+            <h2 class="section-title">ಇತ್ತೀಚೆಗೆ ಸೆರೆ ಹಿಡಿಯಲಾಗಿರುವ ಚಿತ್ರಗಳು</h2>
+
+            <!-- Image Carousel -->
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <!-- Images injected by JS -->
+                </div>
+                <button class="carousel-btn prev"><span class="material-icons">chevron_left</span></button>
+                <button class="carousel-btn next"><span class="material-icons">chevron_right</span></button>
+                <div class="carousel-dots">
+                    <!-- Dots injected by JS -->
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <!-- Photography Item 1 -->
+                <div class="card">
+                    <img src="images/photography/DSC02495 (1).jpg" alt="Recent Photography 1" class="card-img">
+                    <div class="card-caption">
+                        <p>D.A.U. ಗಾಂಧಿನಗರ ಆವರಣದಲ್ಲಿ ಇರುವ ಕಾರಂಜಿಯಲ್ಲಿ ( ಮುಖ್ಯ ದ್ವಾರದ ಬಳಿ) ಕಂಡದ್ದು.</p>
+                        <small>Found at the fountain (near the main gate) in the D.A.U. Gandhinagar campus.</small>
+                    </div>
+                </div>
+                <!-- Photography Item 2 -->
+                <div class="card">
+                    <img src="images/photography/DSC02187.jpg" alt="Recent Photography 2" class="card-img">
+                    <div class="card-caption">
+                        <p>ಅದಲಾಜ್ ನಿ ವಾವ್ ಕಡೆ ಕೆಳ ಮಹಡಿಯಿಂದ ಕಂಡಂತ ನೋಟ</p>
+                        <small>A view of Adalaj Ni Vav from the ground floor.</small>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="dummy-section">
-            <h2>Section 2</h2>
-            <p>More content...</p>
-        </section>
-        <section class="dummy-section" style="background-color: #f0f0f0;">
-            <h2>Section 3</h2>
-            <p>Even more content...</p>
+
+        <!-- Section 2: Favorite Drawings -->
+        <section class="home-section">
+            <h2 class="section-title">ನನ್ನ ನೆಚ್ಚಿನ ಚಿತ್ರಕಲೆ</h2>
+            <div class="card-grid">
+                <!-- Drawing Item 1 -->
+                <div class="card">
+                    <img src="images/drawings/sketch1756493299529.jpg" alt="Favorite Drawing 1" class="card-img">
+                    <div class="card-caption">
+                        <p>ಹೌದು ಸ್ವಾಮಿ ಇದು ನನ್ನ ಚಿತ್ರವೇ.</p>
+                        <small>Yes, sir, this is my picture.</small>
+                    </div>
+                </div>
+                <!-- Drawing Item 2 -->
+                <div class="card">
+                    <img src="images/drawings/manjuoriginal.jpg" alt="Favorite Drawing 2" class="card-img">
+                    <div class="card-caption">
+                        <p>ನನಗೆ ತಿಳಿದಂತೆ ಬರೆದರೂ ಅದ್ಭುತವಾಗಿ ಮೂಡಿ ಬಂದ ಬಾಬಾ ಯಾಗ</p>
+                        <small>Even though I wrote it as I knew it, Baba Yaga came out wonderfully.</small>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="js/image_list.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="loader.js"></script>
 </body>
 
 </html>

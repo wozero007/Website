@@ -5,7 +5,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    background-color: #f8f9fa;
+    background-color: #F5F2F0;
     /* Light grey background for the whole area */
 }
 
@@ -25,7 +25,7 @@
 
 /* Profile Section */
 .cv-section.profile-section {
-    background-color: #F8F9FA;
+    background-color: #F5F2F0;
     box-shadow: none;
     padding: 0;
 }

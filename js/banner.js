@@ -15,11 +15,11 @@
             },
             'photography.html': {
                 title: 'ಛಾಯಾಗ್ರಹಣ (Photography)',
-                image: 'images/banner.jpg'
+                image: 'images/photography/photograpy-banner.jpg'
             },
             'drawings.html': {
-                title: 'ರೇಖಾಚಿತ್ರಕೆ (Drawings)',
-                image: 'images/banner.jpg'
+                title: 'ರೇಖಾಚಿತ್ರಿಕೆ (Drawings)',
+                image: 'images/drawings/drawings-banner.jpg'
             },
             'writings.html': {
                 title: 'ಬರಹಗಳು (Writings)',
