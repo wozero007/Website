@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಬರಹಗಳು (Writings)</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="loader.js"></script>
+    <!-- MathJax is loaded by loader.js -> js/mathjax.js -->
+</head>
+
+<body>
+
+    <!-- Header, Banner, and Footer are injected by script.js -->
+
+    <!-- Main Content -->
+    <main class="writings-container">
+        <div class="writings-grid">
+
+            <!-- Column 1: Poetic Writings -->
+            <section class="writing-column">
+                <h2 class="column-title">ಕಾವ್ಯಾತ್ಮಕ ಬರಹಗಳು (Poetic writings)</h2>
+
+                <div id="poems-krishna" class="writing-list-item writing-link"
+                    data-src="writings/poems/kai_chelli_krishna.md" data-category="poems">
+                    <span class="writing-list-title">ಕೈ ಚೆಲ್ಲಿ ಕೃಷ್ಣಾ ಎಂದ ಮಾತ್ರವೇ ಕೃಪೆಯೇ?!</span>
+                    <span class="writing-meta">August 06, 2025</span>
+                </div>
+
+                <div id="poems-yaravalu" class="writing-list-item writing-link" data-src="writings/poems/yaravalu.md"
+                    data-category="poems">
+                    <span class="writing-list-title">ಯಾರವಳು?</span>
+                    <span class="writing-meta">July 23, 2025</span>
+                </div>
+
+                <div id="poems-narabekashte" class="writing-list-item writing-link"
+                    data-src="writings/poems/narabekashte.md" data-category="poems">
+                    <span class="writing-list-title">ನರಬೇಕಷ್ಟೆ</span>
+                </div>
+
+                <div id="poems-summane" class="writing-list-item writing-link" data-src="writings/poems/summane.md"
+                    data-category="poems">
+                    <span class="writing-list-title">ಸುಮ್ಮನೆ</span>
+                    <span class="writing-meta">10/01/2022</span>
+                </div>
+
+            </section>
+
+            <!-- Column 2: Stories (Index) -->
+            <section class="writing-column">
+                <h2 class="column-title">ಕಥೆಗಳು (Stories)</h2>
+
+                <div id="stories-chakra" class="writing-list-item writing-link" data-src="writings/stories/chakra.md"
+                    data-category="stories">
+                    <span class="writing-list-title">ಚಕ್ರ</span>
+                </div>
+
+                <div id="stories-sulemaga" class="writing-list-item writing-link"
+                    data-src="writings/stories/sulemaga.md" data-category="stories">
+                    <span class="writing-list-title">'ಸೂಳೆಮಗ' ಪ್ರಧಾನ ಪದವಾಯಿತ್ತು.</span>
+                </div>
+
+                <div id="stories-math-apology" class="writing-list-item writing-link"
+                    data-src="writings/stories/mathematician_apology.md" data-category="stories">
+                    <span class="writing-list-title">"A mathematician's apology" ಓದುವಾಗ...</span>
+                </div>
+            </section>
+
+            <!-- Column 3: Math Writings (Index) -->
+            <section class="writing-column">
+                <h2 class="column-title">ಗಣಿತ ಬರಹಗಳು (Mathematics)</h2>
+
+                <div id="maths-sorry-coefficients" class="writing-list-item writing-link"
+                    data-src="writings/maths/math1.md" data-category="maths"
+                    data-sub='[{"title": "View Solution", "src": "writings/maths/math1_sol.md"}]'>
+                    <span class="writing-list-title">Sorry Co-efficients</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/writings.js"></script>
+</body>
+
+</html>
