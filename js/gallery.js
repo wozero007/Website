@@ -11,7 +11,7 @@ let photographyImages = [
 // It will then automatically find your images using the GitHub API.
 const githubConfig = {
     enabled: true,              // <--- CHANGE TO TRUE FOR GITHUB PAGES
-    username: 'manjunathamr',    // Your GitHub Username
+    username: 'wozero007',    // Your GitHub Username
     repo: 'Website',             // Your Repository Name
     folder: 'images/photography'
 };
