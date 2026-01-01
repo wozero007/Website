@@ -13,8 +13,22 @@ section {
     z-index: 10; /* ABOVE silk overlay */
     background-position: center;
     background-size: cover;
+    background-color: #000; /* fallback */
 }
 
+/* blurred background layer */
+section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg) center/cover no-repeat;
+    filter: blur(8px);
+    transform: scale(1.05); /* hide blur edges */
+    z-index: 0;
+    will-change: transform, filter;
+}
+
+/* overlay for contrast */
 section::after {
     content: '';
     position: absolute;
@@ -36,31 +50,31 @@ section.show .content {
     opacity: 1;
 }
 
-/* Backgrounds for each section */
+/* Backgrounds for each section (moved to CSS variable for ::before) */
 #home {
-    background: url('../images/photos/webassets/kanagala_huvina_hulu_by_manjunatha_m_r.jpg') center/cover;
+    --bg: url('../images/photos/Manju/mainDP_Manju.jpg');
 }
 
 #cv {
-    background: url('../images/photos/webassets/accademicbg2.jpg') center/cover;
+    --bg: url('../images/photos/webassets/accademicbg2.jpg');
 }
 
 #photography {
-    background: url('../images/photos/inverted_chitte_hagu_butter_flower_by_manjunatha_m_r.jpg') center/cover;
+    --bg: url('../images/photos/inverted_chitte_hagu_butter_flower_by_manjunatha_m_r.jpg');
 }
 
 #drawings {
-    background: url('../images/drawings/bg1.jpg') center/cover;
+    --bg: url('../images/drawings/bg1.jpg');
 }
 
 #research {
-    background: url('../images/photos/webassets/researchbg2.jpg') center/cover;
+    --bg: url('../images/photos/webassets/researchbg2.jpg');
 }
 
 #writings {
-    background: url('../images/photos/webassets/writingbg2.jpg') center/cover;
+    --bg: url('../images/photos/webassets/writingbg2.jpg');
 }
 
 #math {
-    background: url('../images/photos/webassets/bg1.jpg') center/cover;
+    --bg: url('../images/photos/webassets/bg1.jpg');
 }

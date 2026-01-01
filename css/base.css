@@ -1,0 +1,33 @@
+/* Google Fonts */
+/* Imported in style.css or HTML, but we can put base styles here */
+
+/* Variables */
+:root {
+    --header-height: 64px;
+    --primary-color: #202124;
+    /* Dark grey/black text */
+    --hover-bg: #f5f5f5;
+    --border-color: #dadce0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F9FA;
+    color: #202124;
+}
+
+/* Utilities */
+.spacer {
+    flex-grow: 1;
+}
+
+.content {
+    width: 100%;
+}
+
+.dummy-section {
+    padding: 80px 20px;
+    text-align: center;
+}
