@@ -1,63 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Falling Scroll</title>
-<style>
-  body {
-    margin: 0;
-    background: #f3f0e8;
-    font-family: "Georgia", serif;
-    perspective: 1200px; /* Adds 3D depth */
-  }
-
-  /* Each section is a “sheet of paper” */
-  section {
-    height: 100vh;
-    width: 80%;
-    margin: 50px auto;
-    background: white;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    transform-origin: top center;
-    transition: transform 0.6s ease-out;
-    border-bottom: 2px dashed #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-  }
-
-  section:nth-child(even) {
-    background: #fafafa;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - MANJUNATHA M R</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
+
 <body>
 
-<section>📜 Welcome</section>
-<section>➡️ About</section>
-<section>✅ Services</section>
-<section>📩 Contact</section>
-<section>🌟 Thank You</section>
+    <!-- Header, Sidebar, and Footer are injected by script.js -->
 
-<script>
-  const sections = document.querySelectorAll("section");
+    <!-- Banner is injected by script.js -->
+    <!-- Main Content -->
+    <main class="cv-container">
 
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
+        <!-- Profile Section -->
+        <section class="cv-section profile-section">
+            <div class="profile-card">
+                <img src="images/cv-profile.jpg" alt="Profile Picture" class="profile-img">
+                <h2 class="profile-name">MANJUNATHA M R</h2>
+                <div class="profile-title">
+                    Senior Research Fellow,<br>
+                    Department of Mathematics,<br>
+                    Indian Institute of Technology, Indore
+                </div>
+            </div>
+            <div class="profile-bio">
+                <p>I currently focus on various properties of special functions for my PhD thesis, including
+                    monotonicity, convexity, concavity, sharp bounds, and inequalities. Dr. Sanjeev Singh and Prof.
+                    Árpád Baricz are supervising my work. I am proficient in Kannada, Hindi, and English, and you can
+                    reach me at manjuoffi@gmail.com for further inquiries.</p>
+                <p>Since July 2023, I have been a PhD student in the Department of Mathematics at the Indian Institute
+                    of Technology Indore, located in Indore, India. I earned my Master of Science in Mathematics from
+                    the University of Mysore, where I studied from August 2019 to November 2021. Before that, I
+                    completed my Bachelor of Science in Physics, Mathematics, and Computer Science at Yuvaraja's College
+                    Mysore from June 2016 to April 2019, both in Mysore, India.</p>
+                <p>In November 2022, I received the NET JRF Scholarship. I worked at Infosys in Mysore, Karnataka,
+                    India, holding various positions over one year and seven months. From April 2022 to June 2023, I
+                    served as a Test Engineer, specializing in Automated Testing and Core Java. Before that, I worked as
+                    a System Engineer from February 2022 to April 2022, focusing on Automated Testing and test
+                    automation framework design. I began as a System Engineer Trainee from December 2021 to February
+                    2022.</p>
+            </div>
+        </section>
 
-    sections.forEach((section) => {
-      const rect = section.getBoundingClientRect();
-      const offset = rect.top / windowHeight; 
+        <!-- Present Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Present:</h2>
+            <div class="info-block">
+                <a href="https://math.iiti.ac.in/phd_maths/#:~:text=Manjunatha%20M%20R" class="role-title">Senior
+                    Research Fellow (Jul 2025 - Present)</a>
+                <span class="role-duration">Junior Research Fellow (Jul 2023 - Jul 2025 · 2 yrs 1 mo)</span>
+                <span class="role-details">as a part of ongoing</span>
+                <span class="role-details">Doctor of Philosophy - PhD, Mathematics</span>
+                <span class="role-details">Supervisors: Dr. Sanjeev Singh and Dr. Árpád Baricz</span>
+                <a href="https://math.iiti.ac.in/" class="role-title">Department of Mathematics</a>
+                <a href="https://www.iiti.ac.in/" class="role-title">Indian Institute of Technology Indore</a>
+                <span class="role-location">Indore, Madhya Pradesh, India</span>
+            </div>
+        </section>
 
-      // Rotate like falling paper when scrolling
-      const rotation = Math.min(Math.max(offset * 50, -90), 0); 
-      section.style.transform = `rotateX(${rotation}deg)`;
-    });
-  });
-</script>
+        <!-- Experience Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Experience:</h2>
+            <div class="info-block">
+                <strong style="display:block;  text-decoration: underline;">Infosys</strong>
+                <span class=" role-duration">Test engineer (Apr 2022 - Jun 2023 · 1 yr 3 mo)</span>
+                <span class="role-duration">System Engineer (Feb 2022 - Apr 2022 · 3 mo)</span>
+                <span class="role-duration">System engineer trainee (Dec 2021 - Feb 2022 · 3 mo)</span>
+                <span class="role-location">Mysore, Karnataka, India</span>
+            </div>
+        </section>
 
+        <!-- Education Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Education:</h2>
+            <div class="info-block">
+                <strong style="display:block; text-decoration: underline;">Master of Science, Mathematics</strong>
+                <span class="role-details">University of Mysore</span>
+                <span class="role-location">Mysore, Karnataka, India</span>
+                <div class="separator"></div>
+                <strong style="display:block; text-decoration: underline;">BSc, Physics, Mathematics, Computer
+                    Science</strong>
+                <span class="role-details">Yuvaraja's College (Autonomous)</span>
+                <span class="role-details">Affiliated to University of Mysore</span>
+                <span class="role-location">Mysore, Karnataka, India</span>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Publications:</h2>
+            <ol class="cv-list">
+                <li><a href="https://link.springer.com/article/10.1007/s00013-023-01942-2">M.V., Yathirajsharma and
+                        M.R., Manjunatha, "Partition of quadratic residues and non-residues in
+                        \(\mathbb{Z}_p^*\) for an odd prime \(p\)," Archiv der Mathematik, 122(3) (2024) 265-271.</a>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Awards Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Achivements & awards:</h2>
+            <ol class="cv-list">
+                <li>Received the best paper presentation award for a talk on our research group's work with the title at
+                    the Annual Conference of ISMMACS and the International Conference on Differential Equations: Theory,
+                    Mathematical Modeling, and Scientific Computing.</li>
+                <li>NET (JRF)</li>
+            </ol>
+        </section>
+
+        <!-- Conferences Section -->
+        <section class="cv-section">
+            <h2 class="section-title">Conferences/Workshops/Talks:</h2>
+            <ol class="cv-list">
+                <li>The 39th Annual Conference of the Ramanujan Mathematical Society,
+                    organised by CHRIST (Deemed to be University), Bengaluru, from 27th
+                    December to 29th December 2024
+                    <ul>
+                        <li>Delivered a Contributory talk with tittle “Partition of quadratic residues and non-residues
+                            in
+                            \(\mathbb{Z}_p^*\) for an odd prime \(p\)”</li>
+                    </ul>
+                </li>
+                <li>The Annula Conference of ISMMACS and the International Conference on Differential Equatons:
+                    Theory, Mathematical Modeling, and Scientific Computing, organized by the Dhirubhai Ambani
+                    University, Gandhinar, Gujarat, India from December 7th-10th, 2025.
+                    <ul>
+                        <li>Delivered a Contributory talk with tittle "Turán inequality for Ferrers function of the
+                            first Kind".</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section class="cv-section">
+            <h2 class="section-title">Technologies and programing:</h2>
+            <ol class="cv-list">
+                <li>Selenium ( Advanced) ( Training and experience in Infosys with internal certificates)</li>
+                <li>Core/Advanced Java ( with internal certificates of Infosys and, importantly, experience in Infosys).
+                </li>
+                <li>Buiesness Driven Development (BDD) ( with experience in Infosysy)</li>
+                <li>Web development with HTML5, CSS, JS, and Python. (Acquired through self-interest and trial and
+                    error)</li>
+                <li>Basic knowledge of C, C++, Python, Shell scripting (Linux), and Microprocessor.</li>
+            </ol>
+        </section>
+    </main>
 </body>
+
 </html>
