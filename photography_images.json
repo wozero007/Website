@@ -1,12 +1,10 @@
 ---
 layout: null
 ---
-[
-  {% for file in site.static_files %}
-    {% if file.path contains 'images/photography' %}
-      {% if file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.webp' %}
-      "{{ file.name }}"{% unless forloop.last %},{% endunless %}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-]
+{% assign images = site.static_files | where_exp: "item",
+  "item.path contains 'images/photography'" | map: "name" %
+}
+{
+  { images | jsonify
+  }
+}

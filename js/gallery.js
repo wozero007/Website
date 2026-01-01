@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 1. Try to fetch the auto-generated list (from GitHub Pages)
     try {
-        const response = await fetch('photography_images.json');
+        const response = await fetch('photography_images.json?t=' + new Date().getTime());
         if (!response.ok) throw new Error('Failed to fetch JSON');
 
         // Parsing check - if local, it might return the raw Liquid string, so we need to be careful
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Loaded images from GitHub Pages automation:', images);
 
     } catch (e) {
-        console.warn('Automation not available (likely local). Using manual fallback list.', e);
+        console.warn('Automation not active (running locally or build pending). Using manual list.');
         // Fallback to manual list from image_list.js
         images = window.photographyImages || [];
     }
