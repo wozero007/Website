@@ -3,9 +3,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
-    const folderPath = 'images/photography/';
-    const images = window.photographyImages || [];
-    console.log('Loaded images from manual list:', images);
+    // Determine Gallery Type
+    const galleryType = gallery.getAttribute('data-type') || 'photography';
+
+    let folderPath, images;
+
+    if (galleryType === 'drawings') {
+        folderPath = 'images/drawings/';
+        images = window.drawingImages || [];
+        console.log('Loaded drawings from manual list:', images);
+    } else {
+        // Default to photography
+        folderPath = 'images/photography/';
+        images = window.photographyImages || [];
+        console.log('Loaded photography from manual list:', images);
+    }
 
     // 2. Clear Loading Status
     gallery.innerHTML = '';

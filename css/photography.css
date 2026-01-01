@@ -6,6 +6,22 @@
     padding: 40px 20px;
 }
 
+.gallery-intro {
+    background: #fff;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    line-height: 1.8;
+    text-align: justify;
+    color: #333;
+}
+
+.gallery-intro p {
+    margin: 0;
+}
+
 .gallery {
     display: grid;
     /* 6 columns allows for easy 2-item (3+3) and 3-item (2+2+2) rows */
@@ -49,13 +65,23 @@
 
 /* 
    Last item handling:
-   If the last item is a 'start of row' (5n+1) and it's alone, make it full width?
-   Optional, but helps "uneven form" feeling if a single big block is at the end.
+   If the last item is a 'start of row' (5n+1 or 5n+3) and it's alone, make it full width.
 */
-.gallery-item:last-child:nth-child(5n+1) {
+.gallery-item:last-child:nth-child(5n+1),
+.gallery-item:last-child:nth-child(5n+3) {
     grid-column: span 6;
-    /* Spans full width if it's the only one in the '2-item' row */
 }
+
+/* 
+   2 items left handling (in a 3-item row):
+   If we have 2 items left in a row that usually takes 3 (i.e. ending on 5n+4),
+   make them span 3 columns each (50% width) instead of 2 (33% width).
+*/
+.gallery-item:last-child:nth-child(5n+4),
+.gallery-item:nth-last-child(2):nth-child(5n+3) {
+    grid-column: span 3;
+}
+
 
 
 /* Responsive: Revert to simple grid on smaller screens */
