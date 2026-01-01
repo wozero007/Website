@@ -173,12 +173,24 @@
 }
 
 @media (max-width: 768px) {
+    .cv-container {
+        padding: 20px 16px;
+        /* Standard 16px padding */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .profile-section {
         flex-direction: column;
+        gap: 20px;
     }
 
     .profile-card,
-    .profile-bio {
+    .profile-bio,
+    .cv-section {
         width: 100%;
+        padding: 25px 15px;
+        /* Reduced internal padding */
+        box-sizing: border-box;
     }
 }

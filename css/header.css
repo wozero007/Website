@@ -162,6 +162,36 @@
 }
 
 /* Responsive Breakpoint */
+@media (max-width: 900px) {
+    .header-container {
+        padding: 0 16px;
+        /* Standard Google Sites mobile padding */
+    }
+
+    .brand-link {
+        font-size: 18px;
+        /* Refined font size */
+        flex: 1;
+        min-width: 0;
+        /* Enable flex shrinking */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 12px;
+    }
+
+    .brand-logo {
+        height: 28px;
+        /* Balanced logo size */
+        margin-right: 8px;
+    }
+
+    .icon-btn {
+        padding: 8px;
+        /* Tighter touch targets */
+    }
+}
+
 @media (min-width: 900px) {
 
     /* Tablet/Desktop */

@@ -75,6 +75,38 @@
     text-align: center;
 }
 
+/* Mobile Layout Improvements - Industrial Standard */
+@media (max-width: 600px) {
+    .home-container {
+        padding: 20px 16px;
+        /* Safe 16px gutters */
+        width: 100%;
+        box-sizing: border-box;
+        /* Ensure padding doesn't add to width */
+    }
+
+    .home-section {
+        padding: 20px 15px;
+        /* Compact internal spacing */
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .card-grid {
+        gap: 20px;
+    }
+
+    .card-img {
+        height: 250px;
+        /* Proportional height */
+    }
+}
+
 .card-caption p {
     font-size: 1.1rem;
     color: #333;

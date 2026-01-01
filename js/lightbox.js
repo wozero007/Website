@@ -1,32 +1,139 @@
-// Lightbox Functionality
+// Lightbox Functionality - White Modal & Deep Linking
 (function () {
     // Shared state
-    let lightbox, lightboxImg, caption;
+    let lightbox, lightboxImg, likeBtn, shareBtn, headerTitle;
     let images = [];
     let currentIndex = 0;
 
-    // Helper functions
+    // --- Deep Linking Helpers ---
+    function getFilename(src) {
+        const name = src.substring(src.lastIndexOf('/') + 1);
+        return decodeURIComponent(name); // Ensure we work with clean names
+    }
+
+    function updateHash(index) {
+        if (images[index]) {
+            const filename = getFilename(images[index].src);
+            // Encode again for URL safety
+            history.replaceState(null, null, `#img=${encodeURIComponent(filename)}`);
+        }
+    }
+
+    function checkHash() {
+        const hash = window.location.hash;
+        if (hash.startsWith('#img=')) {
+            // Decode the hash value to get the raw filename
+            const filename = decodeURIComponent(hash.substring(5));
+
+            // Compare decoded filenames
+            const index = images.findIndex(img => getFilename(img.src) === filename);
+
+            if (index !== -1) {
+                console.log('Restoring image from hash:', filename);
+                openLightbox(index);
+            } else {
+                console.warn('Image from hash not found:', filename);
+            }
+        }
+    }
+
+    // --- Core Functions ---
     function openLightbox(index) {
         currentIndex = index;
         if (lightbox) {
-            lightbox.style.display = 'block';
+            lightbox.style.display = 'flex'; // Use flex for centering
+            // Force reflow for animation
+            void lightbox.offsetWidth;
+            lightbox.classList.add('active');
+
             updateLightboxContent();
             document.body.style.overflow = 'hidden'; // Disable scroll
+            updateHash(index);
         }
     }
 
     function closeLightbox() {
         if (lightbox) {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = ''; // Enable scroll
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+                clearHash();
+            }, 300);
         }
     }
 
     function updateLightboxContent() {
+        if (!images[currentIndex]) return;
         const imgToCheck = images[currentIndex];
-        if (imgToCheck && lightboxImg) {
+
+        if (lightboxImg) {
             lightboxImg.src = imgToCheck.src;
-            caption.innerHTML = imgToCheck.alt || '';
+
+            // Update Title (optional, mimicking Writings)
+            // headerTitle.textContent = "Gallery Viewer"; 
+
+            // Update Like State
+            const filename = getFilename(imgToCheck.src);
+            const isLiked = localStorage.getItem(`like_${filename}`) === 'true';
+            updateLikeButton(isLiked);
+
+            updateHash(currentIndex);
+        }
+    }
+
+    function updateLikeButton(isLiked) {
+        if (!likeBtn) return;
+        if (isLiked) {
+            likeBtn.innerHTML = 'favorite';
+            likeBtn.classList.add('active');
+        } else {
+            likeBtn.innerHTML = 'favorite_border';
+            likeBtn.classList.remove('active');
+        }
+    }
+
+    function toggleLike() {
+        const imgToCheck = images[currentIndex];
+        if (!imgToCheck) return;
+
+        const filename = getFilename(imgToCheck.src);
+        const currentLiked = localStorage.getItem(`like_${filename}`) === 'true';
+        const newLiked = !currentLiked;
+
+        localStorage.setItem(`like_${filename}`, newLiked);
+        updateLikeButton(newLiked);
+
+        // Update Grid Button if visible
+        const gridBtn = document.querySelector(`.like-btn[data-filename="${filename}"]`);
+        if (gridBtn) {
+            const icon = gridBtn.querySelector('.material-icons');
+            if (icon) icon.textContent = newLiked ? 'favorite' : 'favorite_border';
+            gridBtn.classList.toggle('active', newLiked);
+        }
+    }
+
+    async function shareImage() {
+        const imgToCheck = images[currentIndex];
+        if (!imgToCheck) return;
+
+        const url = window.location.origin + window.location.pathname + '#img=' + getFilename(imgToCheck.src);
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Check out this photo',
+                    url: url
+                });
+            } catch (err) { console.log(err); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(url);
+                // Visual feedback
+                const originalIcon = shareBtn.innerHTML;
+                shareBtn.innerHTML = 'check';
+                setTimeout(() => shareBtn.innerHTML = originalIcon, 2000);
+            } catch (err) { console.error(err); }
         }
     }
 
@@ -44,47 +151,63 @@
         }
     }
 
-    // Global Init Function
+    // --- Initialization ---
     window.initLightbox = function () {
-        const gallery = document.querySelector('.gallery');
-        if (!gallery) return;
-
-        // 1. Create UI (Only if it doesn't exist)
+        // 1. Inject HTML if missing (The White Modal Structure)
         if (!document.getElementById('lightbox')) {
-            const lightboxHTML = `
+            const html = `
             <div id="lightbox" class="lightbox-modal">
-                <span class="lightbox-close">&times;</span>
-                <img class="lightbox-content" id="lightbox-img">
-                <a class="lightbox-prev">&#10094;</a>
-                <a class="lightbox-next">&#10095;</a>
-                <div id="lightbox-caption" class="lightbox-caption"></div>
-            </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+                <div class="lightbox-content-wrapper">
+                    <!-- Header -->
+                    <div class="lightbox-header">
+                        <span class="lightbox-title"></span>
+                        <span class="lightbox-close material-icons">close</span>
+                    </div>
 
-            // Get method-scoped references (freshly created)
+                    <!-- Body -->
+                    <div class="lightbox-body">
+                        <img class="lightbox-img" id="lightbox-img">
+                        <!-- Floating Nav Removed -->
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="lightbox-footer">
+                        <div class="footer-left">
+                            <button class="nav-btn prev-btn">Previous</button>
+                            <button id="lightbox-like" class="action-btn material-icons">favorite_border</button>
+                        </div>
+                        
+                        <div class="footer-right">
+                            <button id="lightbox-share" class="action-btn material-icons">share</button>
+                            <button class="nav-btn next-btn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+
+            // Bind Elements
             lightbox = document.getElementById('lightbox');
             lightboxImg = document.getElementById('lightbox-img');
-            caption = document.getElementById('lightbox-caption');
-            const closeBtn = document.querySelector('.lightbox-close');
-            const prevBtn = document.querySelector('.lightbox-prev');
-            const nextBtn = document.querySelector('.lightbox-next');
+            likeBtn = document.getElementById('lightbox-like');
+            shareBtn = document.getElementById('lightbox-share');
+            // headerTitle = document.querySelector('.lightbox-title');
 
-            // Attach UI Event Listeners (Once)
-            closeBtn.addEventListener('click', closeLightbox);
-            nextBtn.addEventListener('click', showNext);
-            prevBtn.addEventListener('click', showPrev);
+            // Bind Events
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.querySelector('.prev-btn').addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+            document.querySelector('.next-btn').addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+            likeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLike(); });
+            shareBtn.addEventListener('click', (e) => { e.stopPropagation(); shareImage(); });
 
-            // Close on outside click
+            // Close on backdrop click
             lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
+                if (e.target === lightbox) closeLightbox();
             });
 
-            // Keyboard navigation
+            // Keyboard
             document.addEventListener('keydown', (e) => {
-                if (lightbox && lightbox.style.display === 'block') {
+                if (lightbox && lightbox.style.display !== 'none') {
                     if (e.key === 'ArrowLeft') showPrev();
                     if (e.key === 'ArrowRight') showNext();
                     if (e.key === 'Escape') closeLightbox();
@@ -92,21 +215,27 @@
             });
         }
 
-        // 2. Bind Images (Refresh logic)
-        // Find all images currently in the gallery
-        images = Array.from(document.querySelectorAll('.gallery-item img'));
+        // 2. Refresh Image List
+        images = Array.from(document.querySelectorAll('.gallery-item img, .gallery-card img')); // Flexible selector
 
         images.forEach((img, index) => {
             img.style.cursor = 'pointer';
-            // Use onclick to overwrite any previous listeners if re-binding
-            img.onclick = () => openLightbox(index);
+            // Click on image opens lightbox
+            // If image is inside a card-image-container, we might want the container to trigger it
+            // checking parent
+            const container = img.closest('.card-image-container') || img;
+            container.onclick = () => openLightbox(index);
         });
+
+        // 3. Check Hash
+        checkHash();
     };
 
-    // Initialize on load
+    // Auto Init
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', window.initLightbox);
     } else {
         window.initLightbox();
     }
+
 })();
