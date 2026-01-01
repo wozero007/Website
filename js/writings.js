@@ -274,4 +274,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // 7. Mobile Accordion Logic
+    const columns = document.querySelectorAll('.writing-column');
+    columns.forEach(col => {
+        const title = col.querySelector('.column-title');
+        if (title) {
+            title.addEventListener('click', () => {
+                // Toggle active state
+                // Determine if we are on mobile (optional check, or just let CSS handle it)
+                if (window.innerWidth <= 992) {
+                    col.classList.toggle('active');
+                }
+            });
+        }
+    });
 });
