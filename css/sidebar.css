@@ -3,7 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 256px;
+    width: 280px;
+    /* "Make slidebar little big" */
     height: 100vh;
     background-color: white;
     z-index: 1100;

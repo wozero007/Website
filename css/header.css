@@ -164,31 +164,35 @@
 /* Responsive Breakpoint */
 @media (max-width: 900px) {
     .header-container {
-        padding: 0 16px;
-        /* Standard Google Sites mobile padding */
+        padding: 0 12px;
+        /* Reduce padding slightly to give more room */
     }
 
     .brand-link {
-        font-size: 18px;
-        /* Refined font size */
+        font-size: 15px;
+        /* Smaller font to ensure fit */
         flex: 1;
         min-width: 0;
-        /* Enable flex shrinking */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-left: 12px;
+        margin-left: 4px;
+        letter-spacing: -0.5px;
+        /* Compress text slightly */
+        line-height: 1.2;
     }
 
+    /* Hide Logo on Mobile to prioritize Name visibility */
     .brand-logo {
-        height: 28px;
-        /* Balanced logo size */
-        margin-right: 8px;
+        display: none;
     }
 
     .icon-btn {
         padding: 8px;
-        /* Tighter touch targets */
+    }
+
+    .material-icons {
+        font-size: 26px;
     }
 }
 
