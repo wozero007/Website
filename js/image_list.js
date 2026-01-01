@@ -1,5 +1,4 @@
-window.photographyImages = [
-
+var photographyImages = [
     "DSC02495 (1).jpg",
     "DSC02187.jpg",
     "DSC02396.jpg",
@@ -118,12 +117,16 @@ window.photographyImages = [
     "pudina_soppu_by_manjunatha_m_r (1).jpg",
     "kanagala_huvina_hulu_by_manjunatha_m_r.jpg",
     "nibbe_hannu_by_manjunatha_m_r (2).jpg",
+    "photograpy-banner.jpg",
+    "pic by manjunatha M R  (1).jpg",
+    "pic by manjunatha M R  (10).jpg",
+    "pic by manjunatha M R  (2).jpg",
+    "pic by manjunatha M R  (6).jpg",
+    "podhtraratrishowgida.jpg",
     "portrait_inverted_chitte_hagu_butter_flower_by_manjunatha_m_r.jpg",
-    "chaluvaba_parklidda_huva_by_manjunatha_m_r (1).jpg",
-    "garuda_neelgiri_maradamele.jpg",
-    "IMG_20201008_114842_062.jpg",
-    "IMG_20201009_114713_077.jpg",
-    "gulali_huvu_by_manjunatha_m_r (2).jpg",
+    "pudina_soppu_by_manjunatha_m_r (1).jpg",
     "red_rose_by_manjunatha_m_r.jpg",
-    "dasavalada_haladi_ele_by_manjunatha_m_r.jpg"
+    "shivucafeiitottiketa.jpg",
+    "tavare.jpg",
+    "yellow flower (3).jpg",
 ];
