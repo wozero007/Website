@@ -70,20 +70,8 @@
         if (lightboxImg) {
             lightboxImg.src = imgToCheck.src;
 
-            // Load Count
-            const filename = getFilename(imgToCheck.src);
-            const downloadCount = localStorage.getItem(`download_count_${filename}`) || 0;
-            updateDownloadButton(downloadCount);
-
             updateHash(currentIndex);
         }
-    }
-
-    function updateDownloadButton(count) {
-        const btn = document.getElementById('lightbox-download');
-        if (!btn) return;
-        const countSpan = btn.querySelector('.action-count');
-        if (countSpan) countSpan.textContent = count;
     }
 
     function downloadImage() {
@@ -99,20 +87,6 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-
-        // 2. Count Logic
-        let count = parseInt(localStorage.getItem(`download_count_${filename}`) || 0);
-        count++;
-        localStorage.setItem(`download_count_${filename}`, count);
-
-        updateDownloadButton(count);
-
-        // 3. Sync Grid
-        const gridBtn = document.querySelector(`.download-btn[onclick*="${filename}"]`);
-        if (gridBtn) {
-            const countSpan = gridBtn.querySelector('.action-count');
-            if (countSpan) countSpan.textContent = count;
-        }
     }
 
     async function shareImage() {
@@ -180,7 +154,6 @@
                             <button class="nav-btn prev-btn">Previous</button>
                             <button id="lightbox-download" class="action-btn download-btn">
                                 <span class="material-icons">cloud_download</span>
-                                <span class="action-count">0</span>
                             </button>
                         </div>
                         

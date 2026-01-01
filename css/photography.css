@@ -99,13 +99,11 @@
     align-items: center;
     justify-content: center;
     justify-content: center;
-    width: auto;
-    min-width: 35px;
+    width: 35px;
     height: 35px;
-    border-radius: 20px;
+    border-radius: 50%;
     transition: all 0.2s;
-    padding: 0 10px;
-    gap: 6px;
+    padding: 0;
 }
 
 .card-action-btn .material-icons {

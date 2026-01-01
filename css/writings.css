@@ -21,6 +21,55 @@
     .writings-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Accordion Behavior */
+    .writing-list-item {
+        display: none;
+        /* Hidden by default on mobile */
+    }
+
+    .writing-column.active .writing-list-item {
+        display: block;
+        /* Show when active */
+        animation: fadeIn 0.3s ease;
+    }
+
+    .column-title {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        /* Remove margin when collapsed */
+    }
+
+    .writing-column.active .column-title {
+        margin-bottom: 20px;
+        /* Restore margin when open */
+    }
+
+    .column-title::after {
+        content: 'expand_more';
+        font-family: 'Material Icons';
+        font-size: 24px;
+        transition: transform 0.3s ease;
+    }
+
+    .writing-column.active .column-title::after {
+        transform: rotate(180deg);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 @media (max-width: 600px) {

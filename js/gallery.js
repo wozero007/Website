@@ -47,14 +47,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         imgContainer.appendChild(img);
 
         // Footer Actions
-        const downloadCount = localStorage.getItem(`download_count_${filename}`) || 0;
-
         const footer = document.createElement('div');
         footer.className = 'card-footer';
         footer.innerHTML = `
             <button class="card-action-btn download-btn" onclick="downloadGridImage('${folderPath + filename}', '${filename}', this)">
                 <span class="material-icons">cloud_download</span>
-                <span class="action-count">${downloadCount}</span>
             </button>
             <button class="card-action-btn share-btn" onclick="shareGridImage('${folderPath + filename}')">
                 <span class="material-icons">share</span>
@@ -78,15 +75,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-
-        // 2. Count Logic
-        let count = parseInt(localStorage.getItem(`download_count_${filename}`) || 0);
-        count++;
-        localStorage.setItem(`download_count_${filename}`, count);
-
-        // 3. Update UI
-        const countSpan = btn.querySelector('.action-count');
-        if (countSpan) countSpan.textContent = count;
 
         // Animation
         btn.classList.add('pop');
