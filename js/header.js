@@ -38,11 +38,7 @@
                         <li><a href="writings.html" class="${isActive('writings.html')}">ಬರಹಗಳು (Writings)</a></li>
                     </ul>
                 </nav>
-                <div class="actions">
-                    <button class="icon-btn" aria-label="Search">
-                        <span class="material-icons">search</span>
-                    </button>
-                </div>
+                <div class="actions" style="display: none;"></div>
             </div>
         </header>
 

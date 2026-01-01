@@ -47,15 +47,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         imgContainer.appendChild(img);
 
         // Footer Actions
-        const isLiked = localStorage.getItem(`like_${filename}`) === 'true';
-        const likeIcon = isLiked ? 'favorite' : 'favorite_border';
-        const likeClass = isLiked ? 'active' : '';
+        const downloadCount = localStorage.getItem(`download_count_${filename}`) || 0;
 
         const footer = document.createElement('div');
         footer.className = 'card-footer';
         footer.innerHTML = `
-            <button class="card-action-btn like-btn ${likeClass}" onclick="toggleGridLike(this, '${filename}')">
-                <span class="material-icons">${likeIcon}</span>
+            <button class="card-action-btn download-btn" onclick="downloadGridImage('${folderPath + filename}', '${filename}', this)">
+                <span class="material-icons">cloud_download</span>
+                <span class="action-count">${downloadCount}</span>
             </button>
             <button class="card-action-btn share-btn" onclick="shareGridImage('${folderPath + filename}')">
                 <span class="material-icons">share</span>
@@ -67,17 +66,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         gallery.appendChild(item);
     });
 
+    // Re-init lightbox with new images
+    if (window.initLightbox) window.initLightbox();
+
     // Global Grid Functions
-    window.toggleGridLike = function (btn, filename) {
-        const currentLiked = localStorage.getItem(`like_${filename}`) === 'true';
-        const newLiked = !currentLiked;
-        localStorage.setItem(`like_${filename}`, newLiked);
+    window.downloadGridImage = function (url, filename, btn) {
+        // 1. Trigger Download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-        const icon = btn.querySelector('.material-icons');
-        icon.textContent = newLiked ? 'favorite' : 'favorite_border';
-        btn.classList.toggle('active', newLiked);
+        // 2. Count Logic
+        let count = parseInt(localStorage.getItem(`download_count_${filename}`) || 0);
+        count++;
+        localStorage.setItem(`download_count_${filename}`, count);
 
-        // Add pop animation
+        // 3. Update UI
+        const countSpan = btn.querySelector('.action-count');
+        if (countSpan) countSpan.textContent = count;
+
+        // Animation
         btn.classList.add('pop');
         setTimeout(() => btn.classList.remove('pop'), 300);
     };

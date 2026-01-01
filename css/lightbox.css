@@ -119,8 +119,11 @@
 .footer-right {
     display: flex;
     align-items: center;
-    gap: 15px;
-    /* Space between buttons */
+    gap: 16px;
+}
+
+.footer-right {
+    justify-content: flex-end;
 }
 
 /* Navigation Text Buttons */
@@ -146,9 +149,12 @@
 
 /* Action Buttons */
 .action-btn {
-    width: 44px;
+    width: auto;
+    min-width: 44px;
+    padding: 0 16px;
     height: 44px;
-    border-radius: 50%;
+    gap: 8px;
+    border-radius: 22px;
     border: 1px solid #dadce0;
     background: #fff;
     color: #5f6368;
