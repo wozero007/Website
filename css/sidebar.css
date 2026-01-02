@@ -4,12 +4,13 @@
     top: 0;
     left: 0;
     width: 280px;
-    /* "Make slidebar little big" */
     height: 100vh;
-    background-color: white;
+    background-color: #4F474E;
+    /* Dark theme matching header */
     z-index: 1100;
     transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    /* Liquid Smooth Transition */
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, .2), 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12);
 }
 
@@ -27,7 +28,7 @@
     z-index: 1050;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .sidebar-overlay.open {
@@ -41,14 +42,21 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header .brand-text {
     font-size: 20px;
     font-weight: 500;
-    color: #3c4043;
-    transition: color 0.3s ease;
+    color: #ffffff;
+    /* White text */
+}
+
+/* Close Icon usually is inside sidebar header or injected via JS. 
+   Assuming it inherits color, but let's ensure icon-btn inside sidebar is white 
+*/
+.sidebar .icon-btn {
+    color: #ffffff;
 }
 
 .mobile-nav {
@@ -67,15 +75,20 @@
     height: 48px;
     line-height: 48px;
     text-decoration: none;
-    color: #3c4043;
+    color: #e0e0e0;
+    /* Off-white text */
     font-size: 14px;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .mobile-nav-links li a:hover,
 .mobile-nav-links li a.active {
-    background-color: #e8f0fe;
-    /* Light blue selection */
-    color: #1967d2;
-    /* Google blue */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Subtle light overlay */
+    color: #ffffff;
+    border-left: 4px solid #FFD54F;
+    /* Yellow accent like header */
+    padding-left: 20px;
+    /* Adjust for border */
 }

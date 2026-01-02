@@ -13,4 +13,8 @@ loadScript('js/mathjax.js');
 loadScript('js/header.js');
 loadScript('js/banner.js');
 loadScript('js/footer.js');
-loadScript('js/lightbox.js');
+
+// Only load lightbox on gallery pages
+if (window.location.pathname.includes('photography') || window.location.pathname.includes('drawings')) {
+    loadScript('js/lightbox.js');
+}
