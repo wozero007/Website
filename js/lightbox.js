@@ -19,6 +19,11 @@
         }
     }
 
+    function clearHash() {
+        // Clear hash without page reload
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
     function checkHash() {
         const hash = window.location.hash;
         if (hash.startsWith('#img=')) {
