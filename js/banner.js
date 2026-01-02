@@ -7,23 +7,23 @@
         const pageDetails = {
             'index.html': {
                 title: 'ಮಂಜುನಾಥ ಎಂ ಆರ್',
-                image: 'images/banner.jpg'
+                image: 'images/banner.avif'
             },
             'cv.html': {
                 title: 'Curriculum Vitae',
-                image: 'images/cvbanner.jpg'
+                image: 'images/cvbanner.avif'
             },
             'photography.html': {
                 title: 'ಛಾಯಾಗ್ರಹಣ (Photography)',
-                image: 'images/photography/photograpy-banner.jpg'
+                image: 'images/photography/photograpy-banner.avif'
             },
             'drawings.html': {
                 title: 'ರೇಖಾಚಿತ್ರಿಕೆ (Drawings)',
-                image: 'images/drawings/drawings-banner.jpg'
+                image: 'images/drawings/drawings-banner.avif'
             },
             'writings.html': {
                 title: 'ಬರಹಗಳು (Writings)',
-                image: 'images/banner.jpg'
+                image: 'images/banner.avif'
             }
         };
 

@@ -11,7 +11,7 @@
 
 /* CV Page Banner Override */
 .banner.cv-page-banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../images/cvbanner.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../images/cvbanner.avif');
 }
 
 /* Common Section Card Style */

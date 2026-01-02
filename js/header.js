@@ -8,7 +8,7 @@
             favicon.rel = 'icon';
             document.head.appendChild(favicon);
         }
-        favicon.href = 'images/logo.jpg';
+        favicon.href = 'images/logo.avif';
 
         // 2. Identify Active Page
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -25,7 +25,7 @@
                     </button>
                 </div>
                 <a href="index.html" class="brand-link">
-                    <img src="images/logo.jpg" alt="Logo" class="brand-logo">
+                    <img src="images/logo.avif" alt="Logo" class="brand-logo">
                     MANJUNATHA M R
                 </a>
                 <div class="spacer"></div>
