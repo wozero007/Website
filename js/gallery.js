@@ -39,7 +39,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         imgContainer.className = 'card-image-container';
 
         const img = document.createElement('img');
-        img.src = folderPath + filename;
+
+        // WebP Logic: Display WebP, Download JPG
+        let displaySrc, originalSrc, downloadPath;
+
+        if (galleryType === 'photography') {
+            // Photography: Use Subfolders
+            const webpName = filename.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+            displaySrc = folderPath + 'optimized/' + webpName;
+            originalSrc = folderPath + 'originals/' + filename;
+            downloadPath = originalSrc;
+        } else {
+            // Drawings: Use root folder
+            displaySrc = folderPath + filename;
+            originalSrc = folderPath + filename;
+            downloadPath = originalSrc;
+        }
+
+        img.src = displaySrc;
+        img.dataset.originalSrc = originalSrc; // Store original for Lightbox Download
+
         img.alt = filename;
         img.className = 'gallery-img';
         img.loading = 'lazy';
@@ -50,10 +69,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const footer = document.createElement('div');
         footer.className = 'card-footer';
         footer.innerHTML = `
-            <button class="card-action-btn download-btn" onclick="downloadGridImage('${folderPath + filename}', '${filename}', this)">
+            <button class="card-action-btn download-btn" onclick="downloadGridImage('${downloadPath}', '${filename}', this)">
                 <span class="material-icons">cloud_download</span>
             </button>
-            <button class="card-action-btn share-btn" onclick="shareGridImage('${folderPath + filename}')">
+            <button class="card-action-btn share-btn" onclick="shareGridImage('${originalSrc}')">
                 <span class="material-icons">share</span>
             </button>
         `;
