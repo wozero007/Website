@@ -1,5 +1,5 @@
-const photographyImages = [
-  "DSC02495 (1).jpg",
+var photographyImages = [
+    "DSC02495 (1).jpg",
     "DSC02187.jpg",
     "DSC02396.jpg",
     "DSC02157.jpg",

@@ -83,13 +83,11 @@
         const imgToCheck = images[currentIndex];
         if (!imgToCheck) return;
 
-        // Use original source if available (for JPG download), else fall back to current src
-        const downloadUrl = imgToCheck.dataset.originalSrc || imgToCheck.src;
-        const filename = getFilename(downloadUrl);
+        const filename = getFilename(imgToCheck.src);
 
         // 1. Trigger Download
         const link = document.createElement('a');
-        link.href = downloadUrl;
+        link.href = imgToCheck.src;
         link.download = filename;
         document.body.appendChild(link);
         link.click();
