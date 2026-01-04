@@ -73,7 +73,8 @@
         const imgToCheck = images[currentIndex];
 
         if (lightboxImg) {
-            lightboxImg.src = imgToCheck.src;
+            // Prefer the full-src data attribute (for high quality), fallback to src
+            lightboxImg.src = imgToCheck.dataset.fullSrc || imgToCheck.src;
 
             updateHash(currentIndex);
         }
@@ -83,11 +84,11 @@
         const imgToCheck = images[currentIndex];
         if (!imgToCheck) return;
 
-        const filename = getFilename(imgToCheck.src);
+        const filename = getFilename(imgToCheck.dataset.fullSrc || imgToCheck.src);
 
         // 1. Trigger Download
         const link = document.createElement('a');
-        link.href = imgToCheck.src;
+        link.href = imgToCheck.dataset.fullSrc || imgToCheck.src;
         link.download = filename;
         document.body.appendChild(link);
         link.click();
@@ -98,7 +99,8 @@
         const imgToCheck = images[currentIndex];
         if (!imgToCheck) return;
 
-        const url = window.location.origin + window.location.pathname + '#img=' + getFilename(imgToCheck.src);
+        const srcToUse = imgToCheck.dataset.fullSrc || imgToCheck.src;
+        const url = window.location.origin + window.location.pathname + '#img=' + getFilename(srcToUse);
 
         if (navigator.share) {
             try {

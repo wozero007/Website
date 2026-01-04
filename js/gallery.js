@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 4. Render Images
-    images.forEach(filename => {
+    images.forEach((filename, index) => {
         // Outer Grid Item (Keeps the grid span logic)
         const item = document.createElement('div');
         item.className = 'gallery-item gallery-card'; // Combined classes
@@ -42,7 +42,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         img.src = folderPath + filename;
         img.alt = filename;
         img.className = 'gallery-img';
-        img.loading = 'lazy';
+
+        // Optimize LCP: Eager load first 4 images (above the fold), lazy load the rest
+        if (index < 4) {
+            img.loading = 'eager';
+            img.fetchPriority = 'high';
+        } else {
+            img.loading = 'lazy';
+        }
 
         imgContainer.appendChild(img);
 

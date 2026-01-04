@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manjunathamr.github.io/Axularies/Website/sitemap.xml
