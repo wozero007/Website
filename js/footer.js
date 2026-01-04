@@ -11,7 +11,7 @@
                         <img src="images/icons/linkedin.png" alt="LinkedIn">
                     </a>
                     <!-- ORCID -->
-                    <a href="https://orcid.org/0000-0002-3687-9943" target="_blank" class="social-icon" aria-label="ORCID">
+                    <a href="https://orcid.org/0009-0003-0131-3738" target="_blank" class="social-icon" aria-label="ORCID">
                          <img src="images/icons/orcid.svg" alt="ORCID">
                     </a>
                     <!-- Google Scholar -->
