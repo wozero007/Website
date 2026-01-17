@@ -19,6 +19,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Loaded photography from manual list:', images);
     }
 
+    // Fisher-Yates Shuffle
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Shuffle images for a fresh look every time
+    if (images && images.length > 0) {
+        shuffleArray(images);
+    }
+
     // 2. Clear Loading Status
     gallery.innerHTML = '';
 
@@ -39,7 +52,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         imgContainer.className = 'card-image-container';
 
         const img = document.createElement('img');
-        img.src = folderPath + filename;
+
+        // Use thumbnail for grid display if available (for AVIFs)
+        let displayFilename = filename;
+        if (filename.toLowerCase().endsWith('.avif')) {
+            displayFilename = filename.replace('.avif', '_thumb.avif');
+        }
+
+        img.src = folderPath + displayFilename;
+        // Store original high-res URL for Lightbox
+        img.dataset.fullSrc = folderPath + filename;
         img.alt = filename;
         img.className = 'gallery-img';
 

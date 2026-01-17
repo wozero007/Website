@@ -1,3 +1,3 @@
 # Solution to Linear Modeling
 
-Try untill answer are published
+Try untill answers are published
