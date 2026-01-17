@@ -2,7 +2,7 @@
 
 ## Question
 
-A research group uses a proprietary machine–learning–based document analysis agent (Agent 1) to process technical reports. Each report is automatically divided into two fixed sections (slots), denoted by \( s_1 \) and \( s_2 \). The agent reads different slots at different base speeds depending on the document.
+A research group uses a proprietary machine–learning–based document analysis agent (Agent 1) to process technical reports. Each document is automatically divided into two fixed sections (slots), denoted by \( s_1 \) and \( s_2 \). The agent reads different slots at different base speeds depending on the document.
 
 For document \( d_1 \), the base reading speeds are \( s_{11} \) for slot \( s_1 \) and \( s_{12} \) for slot \( s_2 \).  
 For document \( d_2 \), the corresponding base speeds are \( s_{21} \) and \( s_{22} \).
