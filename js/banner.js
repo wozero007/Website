@@ -15,7 +15,7 @@
             },
             'photography.html': {
                 title: 'ಛಾಯಾಗ್ರಹಣ (Photography)',
-                image: 'images/photography/photograpy-banner.avif'
+                image: 'images/photograpy-banner.avif'
             },
             'drawings.html': {
                 title: 'ರೇಖಾಚಿತ್ರಿಕೆ (Drawings)',

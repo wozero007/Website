@@ -80,18 +80,21 @@ def process_directory(source_folder, full_dest_folder, thumb_dest_folder):
             full_avif_path = os.path.join(full_dest_folder, avif_filename)
             thumb_avif_path = os.path.join(thumb_dest_folder, avif_filename)
 
-            # 1. Generate Full Size (in Originals or target dir)
-            if not os.path.exists(full_avif_path):
-                print(f"Processing Full: {filename}")
-                resize_and_convert(source_path, full_avif_path, FULL_MAX_WIDTH)
+            # 1. Generate Full Size (DISABLED - User wants only JPG in Originals)
+            # if not os.path.exists(full_avif_path):
+            #     print(f"Processing Full: {filename}")
+            #     resize_and_convert(source_path, full_avif_path, FULL_MAX_WIDTH)
+            
+            # We still need to verify the file is valid for the list, 
+            # assuming source exists is enough since we are serving the JPG.
             
             # 2. Generate Thumb (in Thumbs dir)
             if not os.path.exists(thumb_avif_path):
                 print(f"Processing Thumb: {filename}")
                 resize_and_convert(source_path, thumb_avif_path, THUMB_MAX_WIDTH)
 
-            # Add to list if we have the full version
-            if os.path.exists(full_avif_path):
+            # Add to list if we have the source file (which we iterate over)
+            if os.path.exists(source_path):
                 # We export the ORIGINAL filename so the frontend can link to the source file
                 # The frontend will be responsible for swapping extension to .avif for thumbnails
                 valid_images.append(filename)
