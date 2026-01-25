@@ -2,18 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselSlide = document.querySelector('.carousel-slide');
     if (!carouselSlide) return; // Exit if no carousel on page
 
-    // Import images from global list (Top 5 images)
-    // We assume image_list.js is loaded before this script
-    const images = window.photographyImages ? window.photographyImages.slice(0, 7) : [];
+    // Import images from Recent list
+    // Strictly load from 'images/photography/Thumbs/Recent/'
+    let carouselImages = window.recentImages || [];
+    let folderPath = 'images/photography/Thumbs/Recent/';
 
-    // We'll use images 2-6 for carousel (skipping first 2 used in static cards?)
-    // Or just use the very newest ones. Let's use the newest 5.
-    const carouselImages = images.slice(0, 5); // display top 5
+    // We can limit to 5 if needed, or show all in recent
+    if (carouselImages.length > 5) {
+        carouselImages = carouselImages.slice(0, 5);
+    }
 
     // Generate Slides
     carouselImages.forEach((src, index) => {
         const img = document.createElement('img');
-        img.src = 'images/photography/' + src;
+
+        // src might be .jpg, but thumb is .avif
+        let thumbSrc = src.substr(0, src.lastIndexOf(".")) + ".avif";
+        if (src.lastIndexOf(".") === -1) thumbSrc = src + ".avif";
+
+        img.src = folderPath + thumbSrc;
         img.alt = 'Slide ' + (index + 1);
         carouselSlide.appendChild(img);
     });

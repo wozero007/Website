@@ -9,6 +9,7 @@ function loadScript(src) {
 }
 
 // Load Modules
+loadScript('js/protect-images.js');
 loadScript('js/mathjax.js');
 loadScript('js/header.js');
 loadScript('js/banner.js');
