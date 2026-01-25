@@ -1,5 +1,4 @@
 window.photographyImages = [
-    "IMG_20251006_140806541_HDR (1).jpg",
     "DSC03254 (2).jpg",
     "DSC02495 (1).jpg",
     "DSC02396.jpg",
@@ -90,6 +89,7 @@ window.archiveImages = [
     "PXL_20220209_120127915.jpg",
     "PXL_20220208_124701273.jpg",
     "IMG_5066.jpg",
+    "IMG_20251006_140806541_HDR (1).jpg",
     "IMG_20250828_172952483_HDR.jpg",
     "IMG_20201008_114842_062.jpg",
     "IMG_20200822_115836 (1).jpg",
