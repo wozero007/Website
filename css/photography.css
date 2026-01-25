@@ -203,3 +203,67 @@
         aspect-ratio: 4/3;
     }
 }
+
+/* Archive Section */
+.archive-section {
+    margin-top: 60px;
+    text-align: center;
+    padding-top: 40px;
+    border-top: 2px dashed #ddd;
+}
+
+.archive-btn {
+    background-color: #555;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: 'Roboto', sans-serif;
+}
+
+.archive-btn:hover {
+    background-color: #333;
+}
+
+.archive-gallery {
+    margin-top: 30px;
+    /* Re-use main gallery grid styles automatically via class="gallery" */
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* View Original Button Enhanced */
+.card-action-btn.view-btn {
+    width: auto;
+    /* Override circular width */
+    padding: 0 12px;
+    border-radius: 20px;
+    background-color: #f0f4f8;
+    gap: 6px;
+}
+
+.view-btn span.btn-text {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-action-btn.view-btn:hover {
+    background-color: #e1ecf4;
+    color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
