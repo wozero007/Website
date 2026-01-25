@@ -119,4 +119,7 @@ window.archiveImages = [
 ];
 
 window.recentImages = [
+=======
+const photographyImages = [
+>>>>>>> 7708e0ee5ea8f1c12b52332db6514fa59cd6e3a2
 ];
