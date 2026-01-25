@@ -72,15 +72,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Footer Actions
             const footer = document.createElement('div');
             footer.className = 'card-footer';
-            footer.innerHTML = `
-                <button class="card-action-btn view-btn" onclick="viewGridImage('${currentFolderPath + filename}')" title="View Original">
-                    <span class="material-icons">visibility</span>
-                    <span class="btn-text">Original</span>
-                </button>
-                <button class="card-action-btn share-btn" onclick="shareGridImage('${currentFolderPath + filename}')">
-                    <span class="material-icons">share</span>
-                </button>
-            `;
+
+            // View Original Button
+            const viewBtn = document.createElement('button');
+            viewBtn.className = 'card-action-btn view-btn';
+            viewBtn.title = 'View Original';
+            viewBtn.innerHTML = '<span class="material-icons">visibility</span><span class="btn-text">Original</span>';
+            viewBtn.onclick = (e) => {
+                e.stopPropagation(); // Prevent card click? Use logic
+                if (window.openLightboxByUrl) {
+                    window.openLightboxByUrl(currentFolderPath + filename, true);
+                } else {
+                    window.open(currentFolderPath + filename, '_blank');
+                }
+            };
+
+            // Share Button
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'card-action-btn share-btn';
+            shareBtn.innerHTML = '<span class="material-icons">share</span>';
+            shareBtn.onclick = (e) => {
+                e.stopPropagation();
+                shareGridImage(currentFolderPath + filename);
+            };
+
+            // Append buttons
+            footer.appendChild(viewBtn);
+            footer.appendChild(shareBtn);
 
             item.appendChild(imgContainer);
             item.appendChild(footer);
