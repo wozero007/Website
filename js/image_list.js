@@ -122,7 +122,7 @@ window.archiveImages = [
 ];
 
 window.recentImages = [
-    "DSC02495 (1).jpg",
+    "DSC03251.avif",
     "DSC02396.jpg",
     "DSC02167.jpg",
     "DSC02157.jpg",
