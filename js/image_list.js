@@ -1,5 +1,6 @@
 window.photographyImages = [
-    "DSC03254 (2).jpg",
+    "DSC03254.jpg",
+    "DSC03251.jpg",
     "DSC02495 (1).jpg",
     "DSC02396.jpg",
     "DSC02187.jpg",
@@ -121,9 +122,9 @@ window.archiveImages = [
 ];
 
 window.recentImages = [
-    "DSC03254 (2).avif",
     "DSC02495 (1).jpg",
     "DSC02396.jpg",
     "DSC02167.jpg",
-    "DSC02157.jpg"
+    "DSC02157.jpg",
+    "DSC00055 (1).jpg",
 ];
