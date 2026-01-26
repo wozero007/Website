@@ -15,7 +15,7 @@
             },
             'photography.html': {
                 title: 'ಛಾಯಾಗ್ರಹಣ (Photography)',
-                image: 'images/photography/Thumbs/DSC02495 (1).avif'
+                image: 'images/photograpy-banner.avif'
             },
             'drawings.html': {
                 title: 'ರೇಖಾಚಿತ್ರಿಕೆ (Drawings)',
