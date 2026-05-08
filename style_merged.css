@@ -1,0 +1,1417 @@
+/* Main Stylesheet */
+/* Imports modular CSS files to restore global styling */
+
+/* Merged from css/base.css */
+/* Google Fonts */
+/* Imported in style.css or HTML, but we can put base styles here */
+
+/* Variables */
+:root {
+    --header-height: 64px;
+    --primary-color: #202124;
+    /* Dark grey/black text */
+    --hover-bg: #f5f5f5;
+    --border-color: #dadce0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F2F0;
+    color: #202124;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Utilities */
+.spacer {
+    flex-grow: 1;
+}
+
+.content {
+    width: 100%;
+}
+
+.dummy-section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Merged from css/header.css */
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: transparent;
+    /* Transparent initially */
+    box-shadow: none;
+    /* No shadow initially */
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+
+.header.scrolled {
+    background-color: #4F474E;
+    /* Dark background on scroll */
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
+    /* More padding */
+    max-width: 100%;
+}
+
+/* Brand */
+.brand-link {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 8px;
+    transition: color 0.3s ease;
+    display: flex;
+    /* Align image and text */
+    align-items: center;
+}
+
+.brand-logo {
+    height: 34px;
+    width: auto;
+    /* Maintain aspect ratio */
+    margin-right: 12px;
+    border-radius: 4px;
+    /* Slight rounding like screenshot */
+}
+
+/* Nav Link Colors - Dynamic based on background */
+.nav-links li a,
+.icon-btn,
+.mobile-nav-links li a {
+    transition: color 0.3s ease;
+}
+
+/* Default (on transparent banner) - assume banner is dark */
+.header:not(.scrolled) .brand-link,
+.header:not(.scrolled) .nav-links li a,
+.header:not(.scrolled) .icon-btn {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    /* Legibility on image */
+}
+
+/* Scrolled (on dark #4F474E) */
+.header.scrolled .brand-link {
+    color: #ffffff;
+    /* White text on dark background */
+}
+
+.header.scrolled .nav-links li a,
+.header.scrolled .icon-btn {
+    color: #ffffff;
+    text-shadow: none;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+    display: none;
+    /* Hidden on mobile */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 12px;
+    line-height: var(--header-height);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Active/Hover States */
+.nav-links li a.active,
+.nav-links li a:hover {
+    color: #202124;
+    /* Yellow underline for active/hover */
+    border-bottom: 3px solid rgba(255, 213, 79, 1);
+}
+
+.header:not(.scrolled) .nav-links li a.active,
+.header:not(.scrolled) .nav-links li a:hover {
+    color: #ffffff;
+    border-bottom: 3px solid rgba(255, 213, 79, 1);
+}
+
+.header.scrolled .nav-links li a.active,
+.header.scrolled .nav-links li a:hover {
+    color: #ffffff;
+    border-bottom: 3px solid rgba(255, 213, 79, 1);
+}
+
+/* Hover effects need to handle both states or just use a neutral/opacity */
+.header:not(.scrolled) .nav-links li a:hover {
+    color: #f1f3f4;
+}
+
+.header.scrolled .nav-links li a:hover {
+    color: #f1f3f4;
+}
+
+/* Icons */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background-color: rgba(60, 64, 67, 0.08);
+    /* Circle hover effect */
+    color: #202124;
+}
+
+/* Fix contrast for scrolled header icons on hover */
+.header.scrolled .icon-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.material-icons {
+    font-size: 24px;
+}
+
+/* Mobile Only elements */
+.mobile-only {
+    display: block;
+}
+
+/* Responsive Breakpoint */
+@media (max-width: 900px) {
+    .header-container {
+        padding: 0 12px;
+        /* Reduce padding slightly to give more room */
+    }
+
+    .brand-link {
+        font-size: 15px;
+        /* Smaller font to ensure fit */
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 4px;
+        letter-spacing: -0.5px;
+        /* Compress text slightly */
+        line-height: 1.2;
+    }
+
+    /* Hide Logo on Mobile to prioritize Name visibility */
+    .brand-logo {
+        display: none;
+    }
+
+    .icon-btn {
+        padding: 8px;
+    }
+
+    .material-icons {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 900px) {
+
+    /* Tablet/Desktop */
+    .desktop-nav {
+        display: block;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+
+    .brand-link {
+        margin-left: 0;
+        /* Align left */
+    }
+}
+
+/* Merged from css/sidebar.css */
+/* Sidebar / Drawer */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: #4F474E;
+    /* Dark theme matching header */
+    z-index: 1100;
+    transform: translateX(-100%);
+    /* Liquid Smooth Transition */
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, .2), 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header .brand-text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+    /* White text */
+}
+
+/* Close Icon usually is inside sidebar header or injected via JS. 
+   Assuming it inherits color, but let's ensure icon-btn inside sidebar is white 
+*/
+.sidebar .icon-btn {
+    color: #ffffff;
+}
+
+.mobile-nav {
+    padding-top: 8px;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-links li a {
+    display: block;
+    padding: 0 24px;
+    height: 48px;
+    line-height: 48px;
+    text-decoration: none;
+    color: #e0e0e0;
+    /* Off-white text */
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-links li a:hover,
+.mobile-nav-links li a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Subtle light overlay */
+    color: #ffffff;
+    border-left: 4px solid #FFD54F;
+    /* Yellow accent like header */
+    padding-left: 20px;
+    /* Adjust for border */
+}
+
+/* Merged from css/cv.css */
+/* CV Page Specific Styles */
+
+/* Main Layout */
+.cv-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #F5F2F0;
+    /* Light grey background for the whole area */
+}
+
+/* CV Page Banner Override */
+.banner.cv-page-banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../images/cvbanner.avif');
+}
+
+/* Common Section Card Style */
+.cv-section {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    border-radius: 8px;
+}
+
+/* Profile Section */
+.cv-section.profile-section {
+    background-color: #F5F2F0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.profile-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.profile-card {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    /* Maintain original aspect ratio */
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.profile-name {
+    font-size: 35px;
+    /* Subtitle size */
+    font-weight: 400;
+    margin: 10px 0 5px 0;
+    color: #202124;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-title {
+    font-size: 20px;
+    /* Content size */
+    color: #5f6368;
+    line-height: 1.5;
+}
+
+.profile-bio {
+    flex: 2;
+    min-width: 300px;
+    font-size: 20px;
+    /* Content size */
+    /* Matches 13.999pt from reference */
+    line-height: 1.6;
+    color: #3c4043;
+    text-align: justify;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.profile-bio p {
+    margin-bottom: 16px;
+}
+
+/* Info Sections (Present, Experience, etc.) */
+.section-title {
+    font-size: 35px;
+    /* Subtitle size */
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #202124;
+}
+
+.info-block {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3c4043;
+    font-size: 20px;
+    /* Content size */
+}
+
+.role-title {
+    font-size: 20px;
+    /* Content size */
+    font-weight: 500;
+    color: #1a73e8;
+    /* Google blueish link color or similar */
+    margin-bottom: 8px;
+    display: block;
+    text-decoration: none;
+}
+
+.role-title:hover {
+    color: #174ea6;
+    /* Slightly darker blue on hover instead of underline */
+    text-decoration: none;
+}
+
+.role-duration {
+    font-size: 20px;
+    /* Content size */
+    color: #5f6368;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.role-details {
+    font-size: 20px;
+    /* Content size */
+    color: #202124;
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.role-location {
+    font-size: 20px;
+    /* Content size */
+    color: #5f6368;
+    display: block;
+}
+
+.separator {
+    border-top: 1px solid #dadce0;
+    width: 200px;
+    margin: 20px auto;
+}
+
+/* Lists */
+.cv-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    color: #3c4043;
+    font-size: 20px;
+    /* Content size */
+}
+
+.cv-list li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .cv-container {
+        padding: 20px 16px;
+        /* Standard 16px padding */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-card,
+    .profile-bio,
+    .cv-section {
+        width: 100%;
+        padding: 25px 15px;
+        /* Reduced internal padding */
+        box-sizing: border-box;
+    }
+}
+
+/* Merged from css/writings.css */
+/* Writings Page Styles */
+
+.writings-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #F5F2F0;
+    /* Global section background */
+}
+
+/* 3-Column Grid Layout */
+.writings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+/* Responsive: Stack columns on smaller screens */
+@media (max-width: 992px) {
+    .writings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Accordion Behavior */
+    .writing-list-item {
+        display: none;
+        /* Hidden by default on mobile */
+    }
+
+    .writing-column.active .writing-list-item {
+        display: block;
+        /* Show when active */
+        animation: fadeIn 0.3s ease;
+    }
+
+    .column-title {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        /* Remove margin when collapsed */
+    }
+
+    .writing-column.active .column-title {
+        margin-bottom: 20px;
+        /* Restore margin when open */
+    }
+
+    .column-title::after {
+        content: 'expand_more';
+        font-family: 'Material Icons';
+        font-size: 24px;
+        transition: transform 0.3s ease;
+    }
+
+    .writing-column.active .column-title::after {
+        transform: rotate(180deg);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .writings-container {
+        padding: 20px 16px;
+        /* Standard 16px padding */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .writing-column {
+        padding: 20px 15px;
+        /* Compact internal padding */
+    }
+}
+
+/* Column/Card Styling */
+.writing-column {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.column-title {
+    font-size: 1.4rem;
+    color: #202124;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #F5F2F0;
+    font-weight: 500;
+}
+
+/* Collapsible Item (Accordion) Styles */
+.writing-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.writing-item:last-child {
+    border-bottom: none;
+}
+
+summary {
+    cursor: pointer;
+    padding: 10px 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    list-style: none;
+    /* Hide default triangle */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+summary:hover {
+    color: #1a73e8;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+/* Custom Expand/Collapse Indicator */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: '+';
+    font-weight: bold;
+    color: #5f6368;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+details[open] summary::after {
+    content: '-';
+}
+
+/* Expanded Content Styling */
+.writing-content {
+    padding: 15px 10px;
+    color: #3c4043;
+    line-height: 1.8;
+    font-size: 1rem;
+    white-space: pre-line;
+    /* Essential for poetry formatting */
+    background-color: #fafafa;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.writing-content h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #202124;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #dadce0;
+    padding-bottom: 5px;
+}
+
+.writing-meta {
+    display: block;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #5f6368;
+    font-style: italic;
+    text-align: right;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #dadce0;
+    margin: 20px 0;
+}
+
+
+/* Writing Viewer Modal (Enhanced) */
+.writing-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.9);
+    /* Darker backdrop for focus */
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.writing-viewer.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.viewer-container {
+    background-color: #ffffff;
+    width: 95%;
+    max-width: 900px;
+    height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header */
+.viewer-header {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.viewer-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #202124;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+}
+
+.viewer-header .icon-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #5f6368;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.viewer-header .icon-btn:hover {
+    color: #000;
+}
+
+/* Body Container (Scrollable) */
+.viewer-body-container {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #fafafa;
+    padding: 40px;
+}
+
+.viewer-body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.25rem;
+    line-height: 1.9;
+    color: #2c2c2c;
+    margin: 0 auto;
+}
+
+.viewer-body p {
+    margin-bottom: 25px;
+}
+
+/* Mode: Poem (Center) */
+.viewer-body.mode-poem {
+    text-align: center;
+    max-width: 700px;
+}
+
+/* Mode: Prose (Justify) */
+.viewer-body.mode-prose {
+    text-align: justify;
+    max-width: 800px;
+}
+
+/* Footer (Navigation) */
+.viewer-footer {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    color: #3c4043;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(.disabled) {
+    background-color: #f1f3f4;
+    border-color: #d2e3fc;
+    color: #1a73e8;
+    transform: translateY(-1px);
+}
+
+.nav-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+}
+
+/* Scrollbar */
+.viewer-body-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.viewer-body-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.viewer-body-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.viewer-body-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Link Styles */
+.writing-list-item {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #f1f3f4;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.writing-list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #d2e3fc;
+}
+
+.writing-list-title {
+    font-weight: 500;
+    color: #202124;
+    font-size: 1.15rem;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.writing-list-item:hover .writing-list-title {
+    color: #1a73e8;
+}
+
+/* Responsive Adjustments for Mobile/Tablet */
+@media (max-width: 768px) {
+    .viewer-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-width: none;
+    }
+
+    .viewer-body-container {
+        padding: 20px 15px;
+        /* Reduce padding on mobile */
+    }
+
+    .viewer-body {
+        font-size: 1.1rem;
+        /* Slightly smaller font */
+        line-height: 1.6;
+        width: 100%;
+        /* Ensure full width usage */
+        max-width: 100% !important;
+        /* Override specific max-widths */
+    }
+
+    /* Adjust Poem Mode for Mobile */
+    .viewer-body.mode-poem {
+        text-align: center;
+        /* Keep centered but ensure it doesn't overflow */
+        white-space: pre-wrap;
+        /* Allow wrapping on very small screens */
+    }
+
+    /* Adjust Prose Mode for Mobile */
+    .viewer-body.mode-prose {
+        text-align: left;
+        /* Justify can look weird on narrow screens, switch to left */
+    }
+
+    .viewer-header {
+        padding: 12px 15px;
+    }
+
+    .viewer-title {
+        font-size: 1.1rem;
+    }
+
+    .viewer-footer {
+        padding: 12px 15px;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Viewer Header Icons Container */
+.viewer-header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Share Button */
+#share-btn {
+    font-size: 1.5rem;
+    color: #555;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#share-btn:hover {
+    color: #000;
+}
+
+/* Sub-Content Links */
+.viewer-sub-content {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.sub-content-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.sub-content-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.sub-content-btn .material-icons {
+    font-size: 1.2rem;
+}
+
+/* Merged from css/banner.css */
+/* Banner Styles */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    /* Exact height from source */
+    /* Linear gradient for readability + Image */
+    background-color: #4F474E;
+    /* Fallback color for contrast */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../images/banner.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    margin-top: 0;
+
+    /* Yellow border at bottom */
+    border-bottom: 10px solid rgba(255, 213, 79, 1);
+}
+
+.banner-content {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+}
+
+.banner h1 {
+    font-size: 75px;
+    /* Larger font */
+    font-weight: 100;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .banner {
+        height: 250px;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+}
+
+/* Merged from css/footer.css */
+/* Footer Styles */
+.site-footer {
+    background-color: #ffe047;
+    /* Matching the yellow from the screenshot */
+    padding: 40px 20px;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    /* Optional: if needed to separate */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-email {
+    font-size: 16px;
+    color: #3c4043;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Merged from css/carousel.css */
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    /* Margin bottom to separate from static cards */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 500px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    outline: none;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn.prev {
+    left: 20px;
+}
+
+.carousel-btn.next {
+    right: 20px;
+}
+
+/* Dots Indicator */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .carousel-slide img {
+        height: 300px;
+    }
+}
+
+
+/* Home Page Sections */
+
+/* Home Page Layout (Matching CV) */
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #F5F2F0;
+}
+
+.home-section {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: 500;
+}
+
+.card-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    /* Rounded corners like drawings */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    width: 100%;
+    /* Default to full width on mobile */
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: 350px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+}
+
+.card-caption {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Mobile Layout Improvements - Industrial Standard */
+@media (max-width: 600px) {
+    .home-container {
+        padding: 20px 16px;
+        /* Safe 16px gutters */
+        width: 100%;
+        box-sizing: border-box;
+        /* Ensure padding doesn't add to width */
+    }
+
+    .home-section {
+        padding: 20px 15px;
+        /* Compact internal spacing */
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .card-grid {
+        gap: 20px;
+    }
+
+    .card-img {
+        height: 250px;
+        /* Proportional height */
+    }
+}
+
+.card-caption p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.card-caption small {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Update Section Styles */
+.updates-section {
+    background-color: #e8f5e9;
+    /* Light green background to stand out */
+    border-left: 5px solid #4CAF50;
+    text-align: left;
+    padding: 20px 30px;
+}
+
+.updates-section .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2e7d32;
+    text-align: left;
+}
+
+.update-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.update-content p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+    font-weight: 500;
+}
+
+.update-link {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.update-link:hover {
+    background-color: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+    .update-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .update-link {
+        align-self: flex-start;
+    }
+}
