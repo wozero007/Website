@@ -145,7 +145,7 @@
                 if (titleEl) titleEl.textContent = "Viewing original image";
             } else {
                 lightboxImg.src = imgToCheck.src;
-                if (titleEl) titleEl.textContent = "Viewing compressed image`";
+                if (titleEl) titleEl.textContent = "Viewing compressed image";
             }
 
             // Sync Hash logic handled in openLightbox / click / next / prev
